@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet"  href="style.css" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	</head>
+<body>
+<div class="main_block">
+<input type="text" id="display" class ="display" disabled/>
+<div class="label_result">
+	<div class="text info_result"><h2>Result:</h2></div>
+</div>
+<div class="numbers">
+	<button type="button" value="Clear" class="button calculator_clear text" ><h2>Clear</h2></button>
+	<button type="button" value="&larr;" class="button calculator_backspace text"><h2>&larr;</h2></button>
+	<button type="button" value="^2" class="button calculator_percent text"><h2>^2</h2></button>
+	<button type="button" value="1" class="button calculator_button text"><h2>1</h2></button>
+	<button type="button" value="2" class="button calculator_button text"><h2>2</h2></button>
+	<button type="button" value="3" class="button calculator_button text"><h2>3</h2></button>
+	<button type="button" value="4" class="button calculator_button text"><h2>4</h2></button>
+	<button type="button" value="5" class="button calculator_button text"><h2>5</h2></button>
+	<button type="button" value="6" class="button calculator_button text"><h2>6</h2></button>
+	<button type="button" value="7" class="button calculator_button text"><h2>7</h2></button>
+	<button type="button" value="8" class="button calculator_button text"><h2>8</h2></button>
+	<button type="button" value="9" class="button calculator_button text"><h2>9</h2></button>
+	<button type="button" value="." class="button calculator_button text"><h2>.</h2></button>
+	<button type="button" value="0" class="button calculator_button text"><h2>0</h2></button>
+	<button type="button" value="=" class="button1 calculator_equal text"><h2>=</h2></button>
+</div>
+<div class ="operations">
+	<button type="button" value="/" class="button1 calculator_button text"><h2>&divide;</h2></button>
+	<button type="button" value="*" class="button1 calculator_button text"><h2>&times</h2></button>
+	<button type="button" value="-" class="button1 calculator_button text"><h2>-</h2></button>
+	<button type="button" value="+" class="button1 calculator_button text"><h2>+</h2></button>
+	<script>
+	$(document).ready(function () {
+	var calc = $('.main_block');
+    var calcDisplay = calc.find('.display');
+    var calcKeys = calc.find('.button');
+    var calcButton = calc.find('.calculator_button');
+    var calcClear = calc.find('.calculator_clear');
+    var calcEqual = calc.find('.calculator_equal');
+    var calcPercent = calc.find('.calculator_percent');
+    var calcSpace = calc.find('.calculator_backspace');
+    
+	calcKeys.each(function () {
+        var current = $(this).attr('value');
+        $(this).text(current);
+    });
+     calcButton.on('click', function () {
+        calcDisplay.val( calcDisplay.val() + $(this).attr('value') );
+    });
+
+    // CLEAR INPUT
+    calcClear.on('click', function () {
+        calcDisplay.val('');
+    });
+
+    // SHOW RESULT
+    calcEqual.on('click', function () {
+        calcDisplay.val( eval( calcDisplay.val() ) );
+    });
+
+    // POWER BUTTON
+     calcPercent.on('click', function () {
+        calcDisplay.val( Math.pow( calcDisplay.val(), 2 ) );
+    });
+
+    // BACKSPACE BUTTON
+    calcSpace.on('click', function () { 
+        calcDisplay.val( calcDisplay.val().substring(0, calcDisplay.val().length-1) );
+    });
+});
+</script>	
+</div>
+</div>
+</body>
+</html>
